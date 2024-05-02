@@ -139,7 +139,8 @@
 
         $(function () {
             $('form').submit(function () {
-                const newUp    = $('input[name="radioNewUp"]').val();
+                const newUps = document.getElementById('newUp');
+                const newUp    = newUps.value();
                 const name    = $('input[name="name"]').val();
                 const grade = $('input[name="grade"]').val();
                 let place;
