@@ -32,7 +32,7 @@
             <input id="radio-4" type="radio" name="place" value="姉崎公民館" checked><label for="radio-4">姉崎公民館</label><br>
             <input id="radio-5" type="radio" name="place" value="五井公民館"><label for="radio-5">五井公民館</label><br>
             <input id="radio-6" type="radio" name="place" value="三和コミュニティーセンター"><label for="radio-6">三和コミュニティーセンター</label><br>
-            <input id="radio-7" type="radio" name="place" value="国分寺公民館" checked><label for="radio-7">国分寺公民館</label><br>
+            <input id="radio-7" type="radio" name="place" value="国分寺公民館" ><label for="radio-7">国分寺公民館</label><br>
             <input id="radio-8" type="radio" name="place" value="臨海体育館"><label for="radio-8">臨海体育館</label><br>     
             <input id="radio-9" type="radio" name="place" value="有秋公民館"><label for="radio-9">有秋公民館</label><br>         
             <input id="radio-10" type="radio" name="place" value="その他"><label for="radio-10">その他</label>
@@ -123,25 +123,29 @@
                 const newUp    = $('input[name="newUp"]').val();
                 const name    = $('input[name="name"]').val();
                 const grade = $('input[name="grade"]').val();
+                let place;
+                let men;
+                let result;
+                
                 if($('input[name="placeetc"]').val() === ""){
-                    const place  = $('input[name="place"]').val();
+                    place  = $('input[name="place"]').val();
                 }else{
-                    const place  = $('input[name="placeetc"]').val();
+                    place  = $('input[name="placeetc"]').val();
                 }
 
                 if($('input[name="menetc"]').val() === ""){
-                    const men  = $('input[name="men"]').val();
+                    men  = $('input[name="men"]').val();
                 }else{
-                    const men  = $('input[name="menetc"]').val();
+                    men  = $('input[name="menetc"]').val();
                 }
                 
                 const money = $('input[name="money"]').val();
 
                 
                 if($('input[name="resultetc"]').val() === ""){
-                    const result  = $('input[name="result"]').val();
+                    result  = $('input[name="result"]').val();
                 }else{
-                    const result  = $('input[name="resultetc"]').val();
+                    result  = $('input[name="resultetc"]').val();
                 }
 
                 const date = $('input[name="date"]').val();
