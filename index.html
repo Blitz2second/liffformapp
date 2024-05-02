@@ -17,10 +17,19 @@
             <input class="form-control w-100 mt-1" name="name" required>
         </div>
         <p class="mt-3">新規/更新</p>
-        <div>
-            <input id="radio-22" type="radio" name="newUp" value="新規" checked><label for="radio-22">新規</label>
-            <input id="radio-23" type="radio" name="newUp" value="更新"><label for="radio-23">更新</label>     
+        <div >
+            <input class="radioNewUp" id="radioNewUp" type="radio" name="newUp" value="新規" checked onclick="formSwitch()"><label >新規</label>
+            <input class="radioNewUp" type="radio" name="newUp" value="更新" onclick="formSwitch()"><label >更新</label>     
         </div>
+
+          
+        <span id="update" style="display: none; width: auto;">
+          <div class="selecter">
+            <select id="selecters"></select>
+          </div>
+        </span>
+          
+
         <p class="mt-3">学年</p>
         <div>
             <input id="radio-1" type="radio" name="grade" value="1年" checked><label for="radio-1">1年</label>
@@ -88,6 +97,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script>
+        let api_url = 'https://script.google.com/macros/s/AKfycbzLfxcnSvC8BWv2HrfHFxYa9uaeZs6grxxJ1mYlB6yXD1DRbWthJrZy3apQkbgghL7P/exec'; //生成したAPIのURLを指定
+        let selecterBox = document.getElementById('update');
+        let sheetData;
 
         $(document).ready(function () {
             const liffId = "2004801647-7jXMA236";
@@ -156,6 +168,33 @@
                 return false;
             });
         });
+
+
+        $.getJSON(api_url, function(json_data) {
+            let sl = document.getElementById('selecters');
+            sheetData = json_data
+            if(sl.length < sheetData.length){ 
+                for(let num in sheetData){     
+                    let op = document.createElement('option');  
+                    op.text = sheetData[num].name + ":" +sheetData[num].place +":"+sheetData[num].date.substr(0,9);                       
+                    sl.appendChild(op);                       
+                }
+            }
+
+
+        });
+
+        function formSwitch() {
+            check = document.getElementsByClassName('radioNewUp')
+            console.log(check)
+            if (check[0].checked) {
+                selecterBox.style.display = "none";
+            } else if (check[1].checked) {
+                selecterBox.style.display = "inline-block";
+            } else {
+                selecterBox.style.display = "none";
+            }
+        }
 
     </script>
 
