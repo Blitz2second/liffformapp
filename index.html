@@ -126,7 +126,7 @@
                 let place;
                 let men;
                 let result;
-                
+
                 if($('input[name="placeetc"]').val() === ""){
                     place  = $('input[name="place"]').val();
                 }else{
@@ -151,7 +151,7 @@
                 const date = $('input[name="date"]').val();
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
-                const msg = `${newUp}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                const msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
                 sendText(msg);
                 return false;
             });
