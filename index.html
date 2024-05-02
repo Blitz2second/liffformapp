@@ -130,7 +130,7 @@
                 const date = $('input[name="date"]').val();
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
-                const msg = `${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                const msg = `${name}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
                 sendText(msg);
                 return false;
             });
