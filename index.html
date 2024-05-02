@@ -12,14 +12,14 @@
     <p class="text-center">【Blitz予約結果フォーム】</p>
     <p class="text-center">予約した状況を入力してください</p>
     <form class="w-75 mx-auto">
-        <p class="mt-3">担当者</p>
+        <p class="mt-3">登録者</p>
         <div>
             <input class="name" class="form-control w-100 mt-1" name="name" required>
         </div>
-        <p class="mt-3">新規/更新</p>
+        <p class="mt-3">新規 / 更新</p>
         <div >
-            <input class="radioNewUp" id="radioNewUp" type="radio" name="newUp" value="新規" checked onclick="formSwitch()"><label >新規</label>
-            <input class="radioNewUp" id="radioNewUp" type="radio" name="newUp" value="更新" onclick="formSwitch()"><label >更新</label>     
+            <input class="radioNewUp" id="radioNew" type="radio" name="radioNewUp" value="新規" checked onclick="formSwitch()"><label for="radioNew">新規</label>
+            <input class="radioNewUp" id="radioUp" type="radio" name="radioNewUp" value="更新" onclick="formSwitch()"><label for="radioUp">更新</label>     
         </div>
 
           
@@ -34,7 +34,7 @@
         <div>
             <input class="grade" id="radio_1" type="radio" name="grade" value="1年" checked><label for="radio_1">1年</label>
             <input class="grade" id="radio_2" type="radio" name="grade" value="2年"><label for="radio_2">2年</label>     
-            <input class="grade" id="radio_3" type="radio" name="grade" value="3年"><label for="radio_3">3年</label>                                                                                                          
+            <input class="grade" id="radio_3" type="radio" name="grade" value="3年"><label for="radio_3">3年</label><br>                                                                                                 
         </div>
 
         <p class="mt-3">場所</p>
@@ -46,15 +46,16 @@
             <input class="place" id="radio_8" type="radio" name="place" value="臨海体育館"><label for="radio_8">臨海体育館</label><br>     
             <input class="place" id="radio_9" type="radio" name="place" value="有秋公民館"><label for="radio_9">有秋公民館</label><br>         
             <input class="place" id="radio_10" type="radio" name="place" value="その他"><label for="radio_10">その他</label><br>
-            <input class="place" id="radio_11" class="form-control w-100 mt-1" name="placeetc" ><br>
+            <input class="place" id="radio_11" class="form-control w-100 mt-1" name="placeetc" ><br><br>
         </div>
+
         <p class="mt-3">面</p>
         <div>
             <input class="men" id="radio_12" type="radio" name="men" value="A面" checked><label for="radio_12">A面</label><br>
             <input class="men" id="radio_13" type="radio" name="men" value="B面"><label for="radio_13">B面</label><br>
             <input class="men" id="radio_14" type="radio" name="men" value="全面"><label for="radio_14">全面</label><br>
             <input class="men" id="radio_15" type="radio" name="men" value="その他"><label for="radio_15">その他</label><br>
-            <input class="men" id="radio_16" class="form-control w-100 mt-1" name="menetc" ><br>
+            <input class="men" id="radio_16" class="form-control w-100 mt-1" name="menetc" ><br><br>
         </div>
 
         <p class="mt-3">金額</p>
@@ -68,22 +69,22 @@
             <input class="result" id="radio_18" type="radio" name="result" value="落選"><label for="radio_18">落選</label><br>
             <input class="result" id="radio_19" type="radio" name="result" value="結果待ち"><label for="radio_19">結果待ち</label><br>
             <input class="result" id="radio_20" type="radio" name="result" value="その他"><label for="radio_20">その他</label><br>
-            <input class="result" id="radio_21" class="form-control w-100 mt-1" name="resultetc" ><br>
+            <input class="result" id="radio_21" class="form-control w-100 mt-1" name="resultetc" ><br><br>
         </div>
         
         <p class="mt-3">日付</p>
         <div>
-            <input class="date" name="date" type="date" name="date" ><br>
+            <input class="date" name="date" type="date" name="date" ><br><br>
         </div>
 
         <p class="mt-3">開始時間</p>
         <div>
-            <input class="startTime" id="startTime" type="time" name="startTime"  ><br>
+            <input class="startTime" id="startTime" type="time" name="startTime"  ><br><br>
         </div>
 
         <p class="mt-3">終了時間</p>
         <div>
-            <input class="endTime" id="endTime" type="time" name="endTime" ><br>
+            <input class="endTime" id="endTime" type="time" name="endTime" ><br><br>
         </div>
 
 
@@ -138,7 +139,7 @@
 
         $(function () {
             $('form').submit(function () {
-                const newUp    = $('input[name="newUp"]').val();
+                const newUp    = $('input[name="radioNewUp"]').val();
                 const name    = $('input[name="name"]').val();
                 const grade = $('input[name="grade"]').val();
                 let place;
