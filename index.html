@@ -36,7 +36,7 @@
             <input id="radio-8" type="radio" name="place" value="臨海体育館"><label for="radio-8">臨海体育館</label><br>     
             <input id="radio-9" type="radio" name="place" value="有秋公民館"><label for="radio-9">有秋公民館</label><br>         
             <input id="radio-10" type="radio" name="place" value="その他"><label for="radio-10">その他</label>
-            <input id="radio-11" class="form-control w-100 mt-1" name="place" ><br>
+            <input id="radio-11" class="form-control w-100 mt-1" name="placeetc" ><br>
         </div>
         <p class="mt-3">面</p>
         <div>
@@ -44,7 +44,7 @@
             <input id="radio-13" type="radio" name="men" value="B面"><label for="radio-13">B面</label><br>
             <input id="radio-14" type="radio" name="men" value="全面"><label for="radio-14">全面</label><br>
             <input id="radio-15" type="radio" name="men" value="その他"><label for="radio-15">その他</label>
-            <input id="radio-16" class="form-control w-100 mt-1" name="men" ><br>
+            <input id="radio-16" class="form-control w-100 mt-1" name="menetc" ><br>
         </div>
 
         <p class="mt-3">金額</p>
@@ -58,7 +58,7 @@
             <input id="radio-18" type="radio" name="result" value="落選"><label for="radio-18">落選</label><br>
             <input id="radio-19" type="radio" name="result" value="結果待ち"><label for="radio-19">結果待ち</label><br>
             <input id="radio-20" type="radio" name="result" value="その他"><label for="radio-20">その他</label>
-            <input id="radio-21" class="form-control w-100 mt-1" name="result" ><br>
+            <input id="radio-21" class="form-control w-100 mt-1" name="resultetc" ><br>
         </div>
         
         <p class="mt-3">日付</p>
@@ -123,14 +123,31 @@
                 const newUp    = $('input[name="newUp"]').val();
                 const name    = $('input[name="name"]').val();
                 const grade = $('input[name="grade"]').val();
-                const place  = $('input[name="place"]').val();
-                const men  = $('input[name="men"]').val();
+                if($('input[name="placeetc"]').val() === ""){
+                    const place  = $('input[name="place"]').val();
+                }else{
+                    const place  = $('input[name="placeetc"]').val();
+                }
+
+                if($('input[name="menetc"]').val() === ""){
+                    const men  = $('input[name="men"]').val();
+                }else{
+                    const men  = $('input[name="menetc"]').val();
+                }
+                
                 const money = $('input[name="money"]').val();
-                const result = $('input[name="result"]').val();
+
+                
+                if($('input[name="resultetc"]').val() === ""){
+                    const result  = $('input[name="result"]').val();
+                }else{
+                    const result  = $('input[name="resultetc"]').val();
+                }
+
                 const date = $('input[name="date"]').val();
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
-                const msg = `${name}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                const msg = `${newUp}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
                 sendText(msg);
                 return false;
             });
