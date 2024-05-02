@@ -11,7 +11,7 @@
 <body>
     <p class="text-center">【Blitz予約結果フォーム】</p>
     <p class="text-center">予約した状況を入力してください</p>
-    <form class="w-75 mx-auto">
+    <form class="w-75 mx-auto" id="form1">
         <p class="mt-3">登録者</p>
         <div>
             <input class="name" class="form-control w-100 mt-1" name="name" required>
@@ -86,10 +86,7 @@
         <div>
             <input class="endTime" id="endTime" type="time" name="endTime" ><br><br>
         </div>
-
-
-    </div>
-       
+      
         <input type="submit" class="mt-4 btn btn-primary" value="登録する">
     </form>
 
@@ -139,33 +136,32 @@
 
         $(function () {
             $('form').submit(function () {
-                const newUps = document.getElementById('newUp');
-                const newUp    = newUps.value();
+                
+                const newUp = document.querySelector('#form1').radioNewUp.value;
                 const name    = $('input[name="name"]').val();
-                const grade = $('input[name="grade"]').val();
+                const grade = document.querySelector('#form1').grade.value;
                 let place;
                 let men;
                 let result;
 
                 if($('input[name="placeetc"]').val() === ""){
-                    place  = $('input[name="place"]').val();
+                    place  = document.querySelector('#form1').place.value;
                 }else{
-                    place  = $('input[name="placeetc"]').val();
+                    place  = document.querySelector('#form1').placeetc.value;
                 }
 
                 if($('input[name="menetc"]').val() === ""){
-                    men  = $('input[name="men"]').val();
+                    men  = document.querySelector('#form1').men.value;
                 }else{
-                    men  = $('input[name="menetc"]').val();
+                    men  = document.querySelector('#form1').menetc.value;
                 }
                 
                 const money = $('input[name="money"]').val();
-
                 
                 if($('input[name="resultetc"]').val() === ""){
-                    result  = $('input[name="result"]').val();
+                    result  = document.querySelector('#form1').result.value;
                 }else{
-                    result  = $('input[name="resultetc"]').val();
+                    result  = document.querySelector('#form1').resultetc.value;
                 }
 
                 const date = $('input[name="date"]').val();
@@ -174,6 +170,7 @@
                 let sl = document.getElementById('selecters');
                 const selection = sl.selectedIndex;
                 const msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;
+                console.log(msg)
                 sendText(msg);
                 return false;
             });
