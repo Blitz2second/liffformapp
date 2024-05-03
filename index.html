@@ -212,7 +212,7 @@
             let endTime = document.getElementsByClassName('endTime');
             let name = document.getElementsByClassName('name');
 
-            name[0].value = sheetData[message[0]].name
+            name[0].value = sheetData[message[0]-1].name
 
             if(sheetData[message[0]].grade == "1年"){
               grade[0].checked = true;
