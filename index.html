@@ -168,8 +168,18 @@
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
                 let sl = document.getElementById('selecters');
-                const selection = sl.selectedIndex;
-                const msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;
+                const selection = sheetData[sl.selectedIndex].index;
+
+                let check = document.getElementsByClassName('radioNewUp')
+                let msg
+                if (check[0].checked) {
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                } else if (check[1].checked) {
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;      
+                } else {
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                }
+                
                 console.log(msg)
                 sendText(msg);
                 return false;
@@ -184,7 +194,7 @@
             if(sl.length < sheetData.length){ 
                 for(let num in sheetData){     
                     let op = document.createElement('option');  
-                    op.text = num + ":" + sheetData[num].name + ":" +sheetData[num].place +":"+sheetData[num].date;                       
+                    op.text = sheetData[num].index + ":" + sheetData[num].name + ":" +sheetData[num].place +":"+sheetData[num].date;                       
                     sl.appendChild(op);                       
                 }
             }
