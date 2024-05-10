@@ -7,7 +7,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <style>
+    .inline-radio {
+        display: flex;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid #b6b6b6;
+    
+    
+        div {
+        position: relative;
+        flex: 1;
+        }
+    
+        input {
+        width: 100%;
+        height: 30px;
+        opacity: 0;
+        }
+    
+        label {
+        position: absolute;
+        top: 0; left: 0;
+        color: #b6b6b6;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        border-right: 1px solid #b6b6b6;
+        }
+    
+        div:last-child label {
+        border-right: 0;
+        }
+    
+        input:checked + label {
+        background: #668cf4;
+        font-weight: 500;
+        color: #fff;
+        }
+    }
+    </style>
 </head>
 <body>
     <p class="text-center">【Blitz予約結果フォーム】</p>
