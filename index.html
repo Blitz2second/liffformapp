@@ -168,7 +168,8 @@
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
                 let sl = document.getElementById('selecters');
-                const selection = sheetData[sl.selectedIndex].index + 1;
+                const selection = Number(sheetData[sl.selectedIndex -1].index);
+                console.log(selection + "___")
 
                 let check = document.getElementsByClassName('radioNewUp')
                 let msg
