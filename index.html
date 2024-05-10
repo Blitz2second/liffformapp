@@ -7,87 +7,104 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
 <body>
     <p class="text-center">【Blitz予約結果フォーム】</p>
     <p class="text-center">予約した状況を入力してください</p>
     <form class="w-75 mx-auto" id="form1">
-        <p class="mt-3">登録名</p>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">登録名</p>
         <div>
             <input class="name form-control w-100 mt-1" name="name" required>
         </div>
-        <p class="mt-3">新規 / 更新</p>
-        <div >
-            <input class="radioNewUp" id="radioNew" type="radio" name="radioNewUp" value="新規" checked onclick="formSwitch()"><label for="radioNew">新規</label>
-            <input class="radioNewUp" id="radioUp" type="radio" name="radioNewUp" value="更新" onclick="formSwitch()"><label for="radioUp">更新</label>     
-        </div>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">新規 / 更新</p>
+        <group class="inline-radio">
+            <div><input class="radioNewUp" id="radioNew" type="radio" name="radioNewUp" value="新規" checked onclick="formSwitch()"><label for="radioNew">新規</label></div>
+            <div><input class="radioNewUp" id="radioUp" type="radio" name="radioNewUp" value="更新" onclick="formSwitch()"><label for="radioUp">更新</label></div> 
+        </group>
 
           
-        <span id="update" style="display: none;">
+        <span id="update" style="visibility:hidden;">
           <div class="selecter">
             <select id="selecters" style=" width: 100%;"></select>
           </div>
         </span>
           
 
-        <p class="mt-3 ">学年</p>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">学年</p>
+        <group class="inline-radio">
+            <div><input class="grade" id="radio_1" type="radio" name="grade" value="1年" checked><label for="radio_1">1年</label></div>
+            <div><input class="grade" id="radio_2" type="radio" name="grade" value="2年"><label for="radio_2">2年</label></div>
+            <div><input class="grade" id="radio_3" type="radio" name="grade" value="3年"><label for="radio_3">3年</label><br></div>                                                                                                 
+        </group>
+
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">場所</p>
+        <group class="inline-radio">
+            <div><input class="place" id="radio_4" type="radio" name="place" value="姉崎公民館" checked onclick="placeSwitch()"><label for="radio_4">姉崎公民館</label><br></div>
+            <div><input class="place" id="radio_5" type="radio" name="place" value="五井公民館" onclick="placeSwitch()"><label for="radio_5">五井公民館</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="place" id="radio_6" type="radio" name="place" value="三和コミュニティーセンター" onclick="placeSwitch()"><label for="radio_6">三和コミュニティーセンター</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="place" id="radio_7" type="radio" name="place" value="国分寺公民館" onclick="placeSwitch()"><label for="radio_7">国分寺公民館</label><br></div>
+            <div><input class="place" id="radio_8" type="radio" name="place" value="臨海体育館" onclick="placeSwitch()"><label for="radio_8">臨海体育館</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="place" id="radio_9" type="radio" name="place" value="有秋公民館" onclick="placeSwitch()"><label for="radio_9">有秋公民館</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="place" id="radio_10" type="radio" name="place" value="その他" onclick="placeSwitch()"><label for="radio_10">その他</label><br></div>
+        </group>
+        <div><input class="place form-control w-100 mt-1" id="radio_11" name="placeetc" disabled><br><br></div>
+   
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">面</p>
+        <group class="inline-radio">
+            <div><input class="men" id="radio_12" type="radio" name="men" value="A面" checked onclick="menSwitch()"><label for="radio_12">A面</label><br></div>
+            <div><input class="men" id="radio_13" type="radio" name="men" value="B面" onclick="menSwitch()"><label for="radio_13">B面</label><br></div>
+            <div><input class="men" id="radio_14" type="radio" name="men" value="全面" onclick="menSwitch()"><label for="radio_14">全面</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="men" id="radio_15" type="radio" name="men" value="その他" onclick="menSwitch()"><label for="radio_15">その他</label><br></div>
+        </group>
+        <div><input class="men form-control w-100 mt-1" id="radio_16" name="menetc" disabled><br><br></div>
+
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">金額</p>
         <div>
-            <input class="grade" id="radio_1" type="radio" name="grade" value="1年" checked><label for="radio_1">1年</label>
-            <input class="grade" id="radio_2" type="radio" name="grade" value="2年"><label for="radio_2">2年</label>     
-            <input class="grade" id="radio_3" type="radio" name="grade" value="3年"><label for="radio_3">3年</label><br>                                                                                                 
+            <input type="number" class="form-control w-100 mt-1 money" name="money"><br>
         </div>
 
-        <p class="mt-3">場所</p>
-        <div>
-            <input class="place" id="radio_4" type="radio" name="place" value="姉崎公民館" checked onclick="placeSwitch()"><label for="radio_4">姉崎公民館</label><br>
-            <input class="place" id="radio_5" type="radio" name="place" value="五井公民館" onclick="placeSwitch()"><label for="radio_5">五井公民館</label><br>
-            <input class="place" id="radio_6" type="radio" name="place" value="三和コミュニティーセンター" onclick="placeSwitch()"><label for="radio_6">三和コミュニティーセンター</label><br>
-            <input class="place" id="radio_7" type="radio" name="place" value="国分寺公民館" onclick="placeSwitch()"><label for="radio_7">国分寺公民館</label><br>
-            <input class="place" id="radio_8" type="radio" name="place" value="臨海体育館" onclick="placeSwitch()"><label for="radio_8">臨海体育館</label><br>     
-            <input class="place" id="radio_9" type="radio" name="place" value="有秋公民館" onclick="placeSwitch()"><label for="radio_9">有秋公民館</label><br>         
-            <input class="place" id="radio_10" type="radio" name="place" value="その他" onclick="placeSwitch()"><label for="radio_10">その他</label><br>
-            <input class="place form-control w-100 mt-1" id="radio_11" name="placeetc" disabled><br><br>
-        </div>
-
-        <p class="mt-3">面</p>
-        <div>
-            <input class="men" id="radio_12" type="radio" name="men" value="A面" checked onclick="menSwitch()"><label for="radio_12">A面</label><br>
-            <input class="men" id="radio_13" type="radio" name="men" value="B面" onclick="menSwitch()"><label for="radio_13">B面</label><br>
-            <input class="men" id="radio_14" type="radio" name="men" value="全面" onclick="menSwitch()"><label for="radio_14">全面</label><br>
-            <input class="men" id="radio_15" type="radio" name="men" value="その他" onclick="menSwitch()"><label for="radio_15">その他</label><br>
-            <input class="men form-control w-100 mt-1" id="radio_16" name="menetc" disabled><br><br>
-        </div>
-
-        <p class="mt-3">金額</p>
-        <div>
-            <input class="form-control w-100 mt-1 money" name="money" ><br>
-        </div>
-
-        <p class="mt-3">当落状況</p>
-        <div>
-            <input class="result" id="radio_17" type="radio" name="result" value="確定枠" checked onclick="resultSwitch()"><label for="radio_17">確定枠</label><br>
-            <input class="result" id="radio_18" type="radio" name="result" value="落選" onclick="resultSwitch()"><label for="radio_18">落選 / キャンセル</label><br>
-            <input class="result" id="radio_19" type="radio" name="result" value="結果待ち" onclick="resultSwitch()"><label for="radio_19">結果待ち</label><br>
-            <input class="result" id="radio_20" type="radio" name="result" value="その他" onclick="resultSwitch()"><label for="radio_20">その他</label><br>
-            <input class="result form-control w-100 mt-1" id="radio_21" name="resultetc" disabled><br><br>
-        </div>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">当落状況</p>
+        <group class="inline-radio">
+            <div><input class="result" id="radio_17" type="radio" name="result" value="確定枠" checked onclick="resultSwitch()"><label for="radio_17">確定枠</label><br></div>
+            <div><input class="result" id="radio_18" type="radio" name="result" value="落選" onclick="resultSwitch()"><label for="radio_18">落選/キャンセル</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="result" id="radio_19" type="radio" name="result" value="結果待ち" onclick="resultSwitch()"><label for="radio_19">結果待ち</label><br></div>
+        </group>
+        <group class="inline-radio">
+            <div><input class="result" id="radio_20" type="radio" name="result" value="その他" onclick="resultSwitch()"><label for="radio_20">その他</label><br></div>
+        </group>
+        <div><input class="result form-control w-100 mt-1" id="radio_21" name="resultetc" disabled><br><br></div>
         
-        <p class="mt-3">日付</p>
-        <div>
-            <input class="date" name="date" type="date" ><br><br>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">日付</p>
+        <div class="text-center">
+            <input class="date text-center" name="date" type="date" ><br><br>
         </div>
 
-        <p class="mt-3">開始時間</p>
-        <div>
-            <input class="startTime" id="startTime" type="time" name="startTime"  ><br><br>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
+        <div class="text-center">
+            <input class="startTime text-center" id="startTime" type="time" name="startTime"  ><br><br>
         </div>
 
-        <p class="mt-3">終了時間</p>
-        <div>
-            <input class="endTime" id="endTime" type="time" name="endTime" ><br><br>
+        <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">終了時間</p>
+        <div class="text-center">
+            <input class="endTime text-center" id="endTime" type="time" name="endTime" ><br><br>
         </div>
       
-        <input type="submit" class="mt-4 btn btn-primary" value="登録する">
+        <div class="text-center">
+            <input type="submit" class="mt-4 btn btn-primary" value="登録する">
+        </div>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -168,14 +185,13 @@
                 const startTime = $('input[name="startTime"]').val();
                 const endTime = $('input[name="endTime"]').val();
                 let sl = document.getElementById('selecters');
-                const selection = Number(sheetData[sl.selectedIndex -1].index);
-                console.log(selection + "___")
 
                 let check = document.getElementsByClassName('radioNewUp')
                 let msg
                 if (check[0].checked) {
                     msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
                 } else if (check[1].checked) {
+                    const selection = Number(sheetData[sl.selectedIndex -1].index);
                     msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;      
                 } else {
                     msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
@@ -278,12 +294,12 @@
         function formSwitch() {
             check = document.getElementsByClassName('radioNewUp')
             if (check[0].checked) {
-                selecterBox.style.display = "none";
+                selecterBox.style.visibility = "hidden";
                 document.getElementById("form1").reset();
             } else if (check[1].checked) {
-                selecterBox.style.display = "inline-block";                
+                selecterBox.style.visibility = null;                
             } else {
-                selecterBox.style.display = "none";
+                selecterBox.style.visibility = "hidden";
             }
         }
 
