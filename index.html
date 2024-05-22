@@ -204,6 +204,7 @@
         <group class="inline-radio">
             <div><input class="radioNewUp" id="radioNew" type="radio" name="radioNewUp" value="新規" checked onclick="formSwitch()"><label for="radioNew">新規</label></div>
             <div><input class="radioNewUp" id="radioUp" type="radio" name="radioNewUp" value="更新" onclick="formSwitch()"><label for="radioUp">更新</label></div> 
+            <div><input class="radioNewUp" id="radioNo" type="radio" name="radioNewUp" value="該当なし"  onclick="formSwitch()"><label for="radioNo">該当なし</label></div>
         </group>
 
           
@@ -272,7 +273,7 @@
         
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;" >日付</p>
         <div class="text-center">
-            <input class="date text-center" name="date" type="date" required><br><br>
+            <input class="date text-center" name="date" type="date" ><br><br>
         </div>
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
@@ -376,6 +377,8 @@
                 } else if (check[1].checked) {
                     const selection = Number(sheetData[sl.selectedIndex -1].index);
                     msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;      
+                } else if (check[2].checked) {
+                    msg = `${newUp}\n${name}`;      
                 } else {
                     msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
                 }
@@ -481,6 +484,9 @@
                 document.getElementById("form1").reset();
             } else if (check[1].checked) {
                 selecterBox.style.visibility = null;                
+            } else if (check[2].checked) {
+                console.log("aa")
+                selecterBox.style.visibility = "hidden";         
             } else {
                 selecterBox.style.visibility = "hidden";
             }
