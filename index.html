@@ -189,7 +189,7 @@
             color: #fff;
         }
     }
-    
+
     .wickedpicker {
             z-index: 10000 !important; /* モーダルのz-indexが他の要素に隠れないように設定 */
     }
@@ -281,12 +281,12 @@
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
         <div class="text-center">
-            <input class="timepicker startTime text-center " id="startTime" type="text" name="startTime" ><br><br>
+            <input class="timepicker startTime text-center " id="startTime" type="text" name="startTime" readonly><br><br>
         </div>
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">終了時間</p>
         <div class="text-center">
-            <input class="timepicker endTime text-center" id="endTime" type="text" name="endTime" ><br><br>
+            <input class="timepicker endTime text-center" id="endTime" type="text" name="endTime" readonly><br><br>
         </div>
       
         <div class="text-center">
@@ -531,9 +531,7 @@
             }
         }
         // テキスト入力にならないようにデフォルトの入力を防止
-        $('.timepicker').on('focus', function(e){
-            e.preventDefault();
-            $(this).blur(); // テキスト入力を防止
+        $('.timepicker').on('click', function(e){
             $(this).wickedpicker('show');
         });
 
