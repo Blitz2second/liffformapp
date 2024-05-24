@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>	
+    <script src="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.js"></script>
+
     <style>
-    html{
-        -webkit-appearance: none;
-        -moz-appearance: none; 
-        appearance: none;
-    }
     _:lang(x)::-internal-media-controls-overlay-cast-button, .inline-radio {
         display: flex;
         border-radius: 3px;
@@ -278,12 +277,12 @@
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
         <div class="text-center">
-            <input class="startTime text-center" id="startTime" type="time" name="startTime"  ><br><br>
+            <input class="timepicker startTime text-center " id="startTime" type="text" name="startTime" ><br><br>
         </div>
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">終了時間</p>
         <div class="text-center">
-            <input class="endTime text-center" id="endTime" type="time" name="endTime" ><br><br>
+            <input class="timepicker endTime text-center" id="endTime" type="text" name="endTime" ><br><br>
         </div>
       
         <div class="text-center">
@@ -291,7 +290,7 @@
         </div>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
@@ -527,6 +526,15 @@
                 selecterRadio.value = "";
             }
         }
+
+        var options = {
+            now: "12:00", //hh：mm 24時間形式のみ、デフォルトは現在時刻
+            twentyFour: true, //24時間形式を表示します。デフォルトはfalseです。
+            title: '日付入力', //Wickedpickerのタイトル
+            minutesInterval: 15, //分間隔を変更します。デフォルトは1です。
+        };
+
+        $('.timepicker').wickedpicker(options);
 
     </script>
 
