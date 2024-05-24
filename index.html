@@ -189,6 +189,10 @@
             color: #fff;
         }
     }
+    
+    .wickedpicker {
+            z-index: 10000 !important; /* モーダルのz-indexが他の要素に隠れないように設定 */
+    }
     </style>
 </head>
 <body>
@@ -526,15 +530,25 @@
                 selecterRadio.value = "";
             }
         }
+        // テキスト入力にならないようにデフォルトの入力を防止
+        $('.timepicker').on('focus', function(e){
+            e.preventDefault();
+            $(this).blur(); // テキスト入力を防止
+            $(this).wickedpicker('show');
+        });
 
+        $(document).ready(function(){
         var options = {
-            now: "12:00", //hh：mm 24時間形式のみ、デフォルトは現在時刻
-            twentyFour: true, //24時間形式を表示します。デフォルトはfalseです。
-            title: '日付入力', //Wickedpickerのタイトル
-            minutesInterval: 15, //分間隔を変更します。デフォルトは1です。
+            now: '12:00', // 現在の時間をデフォルトとして設定
+            twentyFour: true, // 24時間表示
+            title: '時間を選択', // タイトルをカスタマイズ
+            showSeconds: false, // 秒の表示をオフ
+            timeSeparator: ':', // 時間と分の区切り文字
+            secondsInterval: 1, // 秒の間隔
+            minutesInterval: 15 // 分の間隔
         };
-
         $('.timepicker').wickedpicker(options);
+    });
 
     </script>
 
