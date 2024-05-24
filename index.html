@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>	
-    <script src="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+
 
     <style>
     _:lang(x)::-internal-media-controls-overlay-cast-button, .inline-radio {
@@ -190,11 +190,6 @@
         }
     }
 
-    .timepicker{
-        -moz-appearance: none; 
-        -webkit-appearance: none;
-    }
-
     .wickedpicker {
             z-index: 10000 !important; /* モーダルのz-indexが他の要素に隠れないように設定 */
     }
@@ -286,7 +281,7 @@
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
         <div class="text-center">
-            <input class="timepicker startTime text-center " id="startTime" type="text" name="startTime"><br><br>
+            <input class="timepicker startTime text-center " id="startTime" type="text" name="startTime" ><br><br>
         </div>
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">終了時間</p>
@@ -299,6 +294,10 @@
         </div>
     </form>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/wickedpicker@0.4.3/dist/wickedpicker.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
@@ -311,13 +310,51 @@
 
         let updates = document.getElementById('selecters');
         updates.addEventListener('change', inputChange);
- 
-        
 
-        $(document).ready(function () {
+        $(document).ready(function(){
             const liffId = "2004801647-7jXMA236";
             initializeLiff(liffId);
-        })
+
+            var options = {
+                now: '12:00', // 初期時間を00:00に設定
+                twentyFour: true, // 24時間表示
+                title: '時間を選択', // タイトルをカスタマイズ
+                showSeconds: false, // 秒の表示をオフ
+                timeSeparator: ':', // 時間と分の区切り文字
+                secondsInterval: 1, // 秒の間隔
+                minutesInterval: 15 // 分の間隔
+            };
+
+            $('.timepicker').wickedpicker(options);
+
+            // テキスト入力にならないようにデフォルトの入力を防止
+            $('.timepicker').on('click focus', function(e){
+                e.preventDefault();
+                $(this).blur(); // テキスト入力を防止
+                $(this).wickedpicker('show');
+            });
+            /*
+            $('.timepicker').timepicker({
+                timeFormat: 'HH:mm',
+                interval: 15,
+                minTime: '00:00',
+                maxTime: '23:45',
+                defaultTime: '00:00',
+                startTime: '00:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+
+            // テキスト入力にならないようにデフォルトの入力を防止
+            $('.timepicker').on('click', function(e){
+                $(this).timepicker('show');
+            });*/
+        });
+
+        
+ 
+
 
         function initializeLiff(liffId) {
             liff.init({
@@ -535,27 +572,6 @@
                 selecterRadio.value = "";
             }
         }
-        $(document).ready(function(){
-            var options = {
-                now: '00:00', // 初期時間を00:00に設定
-                twentyFour: true, // 24時間表示
-                title: '時間を選択', // タイトルをカスタマイズ
-                showSeconds: false, // 秒の表示をオフ
-                timeSeparator: ':', // 時間と分の区切り文字
-                secondsInterval: 1, // 秒の間隔
-                minutesInterval: 15 // 分の間隔
-            };
-
-            $('.timepicker').wickedpicker(options);
-
-            // テキスト入力にならないようにデフォルトの入力を防止
-            $('.timepicker').on('click focus', function(e){
-                e.preventDefault();
-                $(this).blur(); // テキスト入力を防止
-                $(this).wickedpicker('show');
-            });
-        });
-
     </script>
 
 </body>
