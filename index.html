@@ -187,7 +187,7 @@
             color: #fff;
         }
     }
-
+     
     .wickedpicker {
             z-index: 10000 !important; /* モーダルのz-indexが他の要素に隠れないように設定 */
     }
@@ -215,7 +215,7 @@
           </div>
         </span>
           
-
+        <span id="resultFrom">
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">学年</p>
         <group class="inline-radio">
             <div><input class="grade" id="radio_1" type="radio" name="grade" value="1年" checked><label for="radio_1">1年</label></div>
@@ -279,13 +279,65 @@
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">開始時間</p>
         <div class="text-center">
-            <input class=" startTime text-center " id="startTime" type="time" name="startTime" ><br><br>
+            <select id="selectStartHour">
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select>
+            <select id="selectStartTime">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
+           
         </div>
 
         <p class="mt-3 text-center" style="border-bottom: solid #1e366a 1px;">終了時間</p>
         <div class="text-center">
-            <input class=" endTime text-center" id="endTime" type="time" name="endTime"><br><br>
+            <select id="selectEndHour">
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select>
+            <select id="selectEndTime">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
         </div>
+        </span>
       
         <div class="text-center">
             <input type="submit" class="mt-4 btn btn-primary" value="登録する">
@@ -370,20 +422,25 @@
 
                 const date = $('input[name="date"]').val();
                 const startTime = $('input[name="startTime"]').val();
+                const selectStartHour = document.getElementById('selectStartHour').value;
+                const selectStartTime = document.getElementById('selectStartTime').value;
+                const selectEndHour = document.getElementById('selectEndHour').value;
+                const selectEndTime = document.getElementById('selectEndTime').value;
+
                 const endTime = $('input[name="endTime"]').val();
                 let sl = document.getElementById('selecters');
 
                 let check = document.getElementsByClassName('radioNewUp')
                 let msg
                 if (check[0].checked) {
-                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${selectStartHour}:${selectStartTime}\n${selectEndHour}:${selectEndTime}`;
                 } else if (check[1].checked) {
                     const selection = Number(sheetData[sl.selectedIndex -1].index);
-                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}\n${selection}`;      
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${selectStartHour}:${selectStartTime}\n${selectEndHour}:${selectEndTime}\n${selection}`;      
                 } else if (check[2].checked) {
                     msg = `${newUp}\n${name}`;      
                 } else {
-                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${startTime}\n${endTime}`;
+                    msg = `${newUp}\n${name}\n${grade}\n${place}\n${men}\n${money}\n${result}\n${date}\n${selectStartHour}:${selectStartTime}\n${selectEndHour}:${selectEndTime}`;
                 }
                 
                 console.log(msg)
@@ -417,7 +474,7 @@
             let money = document.getElementsByClassName('money');
             let result = document.getElementsByClassName('result');
             let date = document.getElementsByClassName('date');
-            let startTime = document.getElementsByClassName('startTime');
+            let startTime = document.getElementsByClassName('selectStartHour');
             let endTime = document.getElementsByClassName('endTime');
             let name = document.getElementsByClassName('name');
 
@@ -471,11 +528,114 @@
                 result[3].checked = true;
                 result[4].value = sheetData[message[0]-1].result
             }   
-            console.log(sheetData[message[0]-1].date)
             date[0].value = sheetData[message[0]-1].date
-            startTime[0].value = sheetData[message[0]-1].startTime
 
-            endTime[0].value = sheetData[message[0]-1].endTime
+            const selectValue = document.getElementById('selectStartHour');
+            const stertHour =  sheetData[message[0]-1].startTime.slice(0,2);
+            if( stertHour == "06"){
+                selectValue.options[0].selected = true
+            } else if( stertHour == "07"){
+                selectValue.options[1].selected = true
+            } else if( stertHour == "08"){
+                selectValue.options[2].selected = true
+            } else if( stertHour == "09"){
+                selectValue.options[3].selected = true
+            } else if( stertHour == "10"){
+                selectValue.options[4].selected = true
+            } else if( stertHour == "11"){
+                selectValue.options[5].selected = true
+            } else if( stertHour == "12"){
+                selectValue.options[6].selected = true
+            } else if( stertHour == "13"){
+                selectValue.options[7].selected = true
+            } else if( stertHour == "14"){
+                selectValue.options[8].selected = true
+            } else if( stertHour == "15"){
+                selectValue.options[9].selected = true
+            } else if( stertHour == "16"){
+                selectValue.options[10].selected = true
+            } else if( stertHour == "17"){
+                selectValue.options[11].selected = true
+            } else if( stertHour == "18"){
+                selectValue.options[12].selected = true
+            } else if( stertHour == "19"){
+                selectValue.options[13].selected = true
+            } else if( stertHour == "20"){
+                selectValue.options[14].selected = true
+            } else if( stertHour == "21"){
+                selectValue.options[15].selected = true
+            } else if( stertHour == "22"){
+                selectValue.options[16].selected = true
+            } else if( stertHour == "23"){
+                selectValue.options[17].selected = true
+            }
+
+            const selectValueTime = document.getElementById('selectStartTime');
+            const stertTime =  sheetData[message[0]-1].startTime.slice(-2);
+            if( stertTime == "00"){
+                selectValueTime.options[0].selected = true
+            } else if( stertTime == "15"){
+                selectValueTime.options[1].selected = true
+            } else if( stertTime == "30"){
+                selectValueTime.options[2].selected = true
+            } else if( stertTime == "45"){
+                selectValueTime.options[3].selected = true
+            } 
+
+            const selectValueEnd = document.getElementById('selectEndHour');
+            const endHour =  sheetData[message[0]-1].endTime.slice(0,2);
+            if( endHour == "06"){
+                selectValueEnd.options[0].selected = true
+            } else if( endHour == "07"){
+                selectValueEnd.options[1].selected = true
+            } else if( endHour == "08"){
+                selectValueEnd.options[2].selected = true
+            } else if( endHour == "09"){
+                selectValueEnd.options[3].selected = true
+            } else if( endHour == "10"){
+                selectValueEnd.options[4].selected = true
+            } else if( endHour == "11"){
+                selectValueEnd.options[5].selected = true
+            } else if( endHour == "12"){
+                selectValueEnd.options[6].selected = true
+            } else if( endHour == "13"){
+                selectValueEnd.options[7].selected = true
+            } else if( endHour == "14"){
+                selectValueEnd.options[8].selected = true
+            } else if( endHour == "15"){
+                selectValueEnd.options[9].selected = true
+            } else if( endHour == "16"){
+                selectValueEnd.options[10].selected = true
+            } else if( endHour == "17"){
+                selectValueEnd.options[11].selected = true
+            } else if( endHour == "18"){
+                selectValueEnd.options[12].selected = true
+            } else if( endHour == "19"){
+                selectValueEnd.options[13].selected = true
+            } else if( endHour == "20"){
+                selectValueEnd.options[14].selected = true
+            } else if( endHour == "21"){
+                selectValueEnd.options[15].selected = true
+            } else if( endHour == "22"){
+                selectValueEnd.options[16].selected = true
+            } else if( endHour == "23"){
+                selectValueEnd.options[17].selected = true
+            }
+
+            const selectValueENDTime = document.getElementById('selectEndTime');
+            const endTimes =  sheetData[message[0]-1].endTime.slice(-2);
+            if( endTimes == "00"){
+                selectValueENDTime.options[0].selected = true
+            } else if( endTimes == "15"){
+                selectValueENDTime.options[1].selected = true
+            } else if( endTimes == "30"){
+                selectValueENDTime.options[2].selected = true
+            } else if( endTimes == "45"){
+                selectValueENDTime.options[3].selected = true
+            } 
+           
+
+            //endTime[0].value = sheetData[message[0]-1].endTime
 
 
         }
@@ -484,11 +644,13 @@
             check = document.getElementsByClassName('radioNewUp')
             if (check[0].checked) {
                 selecterBox.style.visibility = "hidden";
+                document.getElementById('resultFrom').style.display = "block";
                 document.getElementById("form1").reset();
             } else if (check[1].checked) {
-                selecterBox.style.visibility = null;                
+                selecterBox.style.visibility = null;    
+                document.getElementById('resultFrom').style.display = "block";            
             } else if (check[2].checked) {
-                console.log("aa")
+                document.getElementById('resultFrom').style.display = "none";
                 selecterBox.style.visibility = "hidden";         
             } else {
                 selecterBox.style.visibility = "hidden";
