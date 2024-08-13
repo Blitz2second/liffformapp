@@ -451,6 +451,7 @@
         });
 
 
+         
         $.getJSON(api_url, function(json_data) {
             let sl = document.getElementById('selecters');
             sheetData = json_data
@@ -465,7 +466,14 @@
                     sl.appendChild(op);                       
                 }
             }
+            
+            console.log(getById("38"))
+            
         });
+
+        const getById = (id) => {
+            return sheetData.find(data => data.index === id);
+        };
 
         function inputChange(event){
             let message = event.currentTarget.value.split(":");
@@ -479,60 +487,60 @@
             let endTime = document.getElementsByClassName('endTime');
             let name = document.getElementsByClassName('name');
 
-            name[0].value = sheetData[message[0]-1].name
+            name[0].value = getById(message[0]).name
 
-            if(sheetData[message[0]-1].grade == "1年"){
+            if(getById(message[0]).grade == "1年"){
               grade[0].checked = true;
-            }else if(sheetData[message[0]-1].grade == "2年"){
+            }else if(getById(message[0]).grade == "2年"){
               grade[1].checked = true;
-            }else if(sheetData[message[0]-1].grade == "3年"){
+            }else if(getById(message[0]).grade == "3年"){
               grade[2].checked = true;
             }
 
-            if(sheetData[message[0]-1].place == "姉崎公民館"){
+            if(getById(message[0]).place == "姉崎公民館"){
                 place[0].checked = true;
-            }else if(sheetData[message[0]-1].place == "五井公民館"){
+            }else if(getById(message[0]).place == "五井公民館"){
                 place[1].checked = true;
-            }else if(sheetData[message[0]-1].place == "三和コミュニティーセンター"){
+            }else if(getById(message[0]).place == "三和コミュニティーセンター"){
                 place[2].checked = true;
-            }else if(sheetData[message[0]-1].place == "国分寺公民館"){
+            }else if(getById(message[0]).place == "国分寺公民館"){
                 place[3].checked = true;
-            }else if(sheetData[message[0]-1].place == "臨海体育館"){
+            }else if(getById(message[0]).place == "臨海体育館"){
                 place[4].checked = true;
-            }else if(sheetData[message[0]-1].place == "有秋公民館"){
+            }else if(getById(message[0]).place == "有秋公民館"){
                 place[5].checked = true;
             }else {
                 place[6].checked = true;
-                place[7].value = sheetData[message[0]-1].place
+                place[7].value = getById(message[0]).place
             }
 
-            if(sheetData[message[0]-1].men == "A面"){
+            if(getById(message[0]).men == "A面"){
                 men[0].checked = true;
-            }else if(sheetData[message[0]-1].men == "B面"){
+            }else if(getById(message[0]).men == "B面"){
                 men[1].checked = true;
-            }else if(sheetData[message[0]-1].men == "全面"){
+            }else if(getById(message[0]).men == "全面"){
                 men[2].checked = true;
             }else {
                 men[3].checked = true;
-                men[4].value = sheetData[message[0]-1].men
+                men[4].value = getById(message[0]).men
             }
 
-            money[0].value = sheetData[message[0]-1].money
+            money[0].value = getById(message[0]).money
 
-            if(sheetData[message[0]-1].result == "確定枠"){
+            if(getById(message[0]).result == "確定枠"){
                 result[0].checked = true;
-            }else if(sheetData[message[0]-1].result == "落選"){
+            }else if(getById(message[0]).result == "落選"){
                 result[1].checked = true;
-            }else if(sheetData[message[0]-1].result == "結果待ち"){
+            }else if(getById(message[0]).result == "結果待ち"){
                 result[2].checked = true;
             }else {
                 result[3].checked = true;
-                result[4].value = sheetData[message[0]-1].result
+                result[4].value = getById(message[0]).result
             }   
-            date[0].value = sheetData[message[0]-1].date
+            date[0].value = getById(message[0]).date
 
             const selectValue = document.getElementById('selectStartHour');
-            const stertHour =  sheetData[message[0]-1].startTime.slice(0,2);
+            const stertHour =  getById(message[0]).startTime.slice(0,2);
             if( stertHour == "06"){
                 selectValue.options[0].selected = true
             } else if( stertHour == "07"){
@@ -572,7 +580,7 @@
             }
 
             const selectValueTime = document.getElementById('selectStartTime');
-            const stertTime =  sheetData[message[0]-1].startTime.slice(-2);
+            const stertTime =  getById(message[0]).startTime.slice(-2);
             if( stertTime == "00"){
                 selectValueTime.options[0].selected = true
             } else if( stertTime == "15"){
@@ -584,7 +592,7 @@
             } 
 
             const selectValueEnd = document.getElementById('selectEndHour');
-            const endHour =  sheetData[message[0]-1].endTime.slice(0,2);
+            const endHour =  getById(message[0]).endTime.slice(0,2);
             if( endHour == "06"){
                 selectValueEnd.options[0].selected = true
             } else if( endHour == "07"){
@@ -624,7 +632,7 @@
             }
 
             const selectValueENDTime = document.getElementById('selectEndTime');
-            const endTimes =  sheetData[message[0]-1].endTime.slice(-2);
+            const endTimes =  getById(message[0]).endTime.slice(-2);
             if( endTimes == "00"){
                 selectValueENDTime.options[0].selected = true
             } else if( endTimes == "15"){
@@ -636,7 +644,7 @@
             } 
            
 
-            //endTime[0].value = sheetData[message[0]-1].endTime
+            //endTime[0].value = getById(message[0]).endTime
 
 
         }
