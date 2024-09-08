@@ -237,6 +237,7 @@
         </group>
         <group class="inline-radio">
             <div><input class="place" id="radio_9" type="radio" name="place" value="有秋公民館" onclick="placeSwitch()"><label for="radio_9">有秋公民館</label><br></div>
+            <div><input class="place" id="radio_22" type="radio" name="place" value="アネッサ" onclick="placeSwitch()"><label for="radio_22">アネッサ</label><br></div>
         </group>
         <group class="inline-radio">
             <div><input class="place" id="radio_10" type="radio" name="place" value="その他" onclick="placeSwitch()"><label for="radio_10">その他</label><br></div>
@@ -509,9 +510,11 @@
                 place[4].checked = true;
             }else if(getById(message[0]).place == "有秋公民館"){
                 place[5].checked = true;
-            }else {
+            }else if(getById(message[0]).place == "アネッサ"){
                 place[6].checked = true;
-                place[7].value = getById(message[0]).place
+            }else {
+                place[7].checked = true;
+                place[8].value = getById(message[0]).place
             }
 
             if(getById(message[0]).men == "A面"){
@@ -671,8 +674,8 @@
         function placeSwitch() {
             check = document.getElementsByClassName('place')
             let selecterRadio = document.getElementById('radio_11');
-            console.log(check[6].checked)
-            if (check[6].checked) {
+            //console.log(check[7].checked)
+            if (check[7].checked) {
                 selecterRadio.disabled = null;
             } else {
                 selecterRadio.disabled = "disabled";
